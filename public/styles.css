@@ -184,6 +184,12 @@ figure { margin: 0; }
 }
 .contact__phone:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 address { margin-top: 26px; font-style: normal; color: #e9e4d8; }
+.hours { margin-top: 26px; max-width: 300px; }
+.hours h3 { font-size: 1.4rem; color: var(--paper); margin-bottom: 8px; }
+.hours dl { margin: 0; }
+.hours dl div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-top: 1px solid rgba(247, 226, 180, .22); }
+.hours dt { color: #e9e4d8; }
+.hours dd { margin: 0; color: var(--lamp-soft); font-weight: 600; }
 .links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 18px 0 0; padding: 0; list-style: none; }
 .links a { color: var(--lamp-soft); text-underline-offset: 4px; }
 
