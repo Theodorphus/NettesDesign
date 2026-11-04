@@ -1,0 +1,280 @@
+@font-face { font-family: "Yeseva One"; src: url("/assets/fonts/yeseva-one.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("/assets/fonts/figtree.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "Caveat"; src: url("/assets/fonts/caveat.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+:root {
+  /* Färgerna kommer från bilderna: påfågelstunikan, lampljuset och väggarna i salongen. */
+  --night: #12292c;
+  --night-soft: #1c3d3f;
+  --peacock: #1a5a5c;
+  --lamp: #edc06a;
+  --lamp-soft: #f7e2b4;
+  --wall: #f4ebdc;
+  --paper: #fffaf1;
+  --ink: #2b2420;
+  --ink-soft: #5e5248;
+  --line: #d9cbb4;
+  --error: #9c2b33;
+
+  --display: "Yeseva One", Georgia, serif;
+  --body: "Figtree", system-ui, sans-serif;
+  --hand: "Caveat", cursive;
+  --gutter: clamp(16px, 5vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--wall);
+  color: var(--ink);
+  font: 400 1.125rem/1.65 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--lamp);
+  outline-offset: 3px;
+}
+.defs { position: absolute; }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--paper);
+  background:
+    radial-gradient(60rem 40rem at 78% 42%, rgba(237, 192, 106, .24), transparent 65%),
+    radial-gradient(40rem 30rem at 0% 100%, rgba(26, 90, 92, .7), transparent 70%),
+    var(--night);
+}
+.hero__inner {
+  max-width: calc(1120px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 88px) var(--gutter) clamp(48px, 7vw, 96px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 80px);
+}
+.eyebrow {
+  font: 500 clamp(1.5rem, 3vw, 1.85rem)/1.2 var(--hand);
+  color: var(--lamp);
+  margin-bottom: 14px;
+}
+h1 { font-size: clamp(3.3rem, 8.6vw, 6.6rem); line-height: .98; }
+h1 span { display: block; color: var(--lamp-soft); }
+.lead {
+  max-width: 30ch;
+  margin-top: 24px;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  line-height: 1.5;
+  color: #e9e4d8;
+}
+
+.call {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 34px;
+  padding: 14px 30px 16px;
+  border-radius: 18px;
+  background: var(--lamp);
+  color: var(--night);
+  text-decoration: none;
+  box-shadow: 0 0 44px rgba(237, 192, 106, .34);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.call:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(237, 192, 106, .5); }
+.call__label { font-size: 1rem; font-weight: 600; }
+.call__number { font: 400 clamp(1.75rem, 4vw, 2.3rem)/1.15 var(--display); white-space: nowrap; }
+
+.hero__portrait { position: relative; max-width: 430px; width: 100%; justify-self: center; }
+.arch {
+  padding: 10px;
+  border: 1px solid rgba(237, 192, 106, .75);
+  border-radius: 999px 999px 18px 18px;
+}
+.arch img {
+  width: 100%;
+  aspect-ratio: 520 / 700;
+  object-fit: cover;
+  object-position: 50% 0;
+  border-radius: 999px 999px 10px 10px;
+}
+
+/* Glittret från salongens egna bilder */
+.spark { position: absolute; z-index: 1; fill: var(--lamp-soft); filter: drop-shadow(0 0 6px rgba(247, 226, 180, .9)); animation: twinkle 4.5s ease-in-out infinite; }
+.spark--1 { width: 58px; height: 58px; top: 6%;  left: -7%; }
+.spark--2 { width: 30px; height: 30px; top: 20%; right: -8%; animation-delay: -1.2s; }
+.spark--3 { width: 22px; height: 22px; top: 44%; left: -11%; animation-delay: -2.6s; }
+.spark--4 { width: 44px; height: 44px; bottom: 16%; right: -9%; animation-delay: -3.4s; }
+.spark--5 { width: 18px; height: 18px; bottom: 5%; left: -5%; animation-delay: -.6s; }
+@keyframes twinkle {
+  0%, 100% { opacity: .95; transform: scale(1) rotate(0); }
+  50% { opacity: .35; transform: scale(.65) rotate(18deg); }
+}
+
+/* Väggen med bilder */
+.wall { padding: clamp(56px, 9vw, 120px) var(--gutter) clamp(64px, 9vw, 128px); }
+.wall__grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+}
+.wall__text { grid-column: 1 / 6; padding-top: 12px; }
+h2 { font-size: clamp(2.3rem, 5vw, 3.4rem); color: var(--night); }
+.wall__text p { margin-top: 20px; max-width: 38ch; color: var(--ink-soft); }
+
+figure { margin: 0; }
+.frame {
+  background: var(--paper);
+  padding: clamp(10px, 1.6vw, 20px);
+  border: 5px solid #1b1716;
+  box-shadow: 0 2px 2px rgba(43, 36, 32, .12), 0 22px 40px -18px rgba(43, 36, 32, .5);
+}
+.frame--salon { grid-column: 6 / 13; }
+.frame--details { grid-column: 2 / 7; }
+.polaroid {
+  grid-column: 8 / 12;
+  margin-top: clamp(16px, 4vw, 56px);
+  padding: 12px 12px 8px;
+  background: #fff;
+  transform: rotate(2.5deg);
+  box-shadow: 0 2px 2px rgba(43, 36, 32, .12), 0 20px 34px -16px rgba(43, 36, 32, .5);
+}
+.polaroid figcaption {
+  padding: 8px 2px 2px;
+  text-align: center;
+  font: 500 1.5rem/1.2 var(--hand);
+  color: var(--ink);
+}
+
+/* Kontakt */
+.contact {
+  padding: clamp(56px, 8vw, 104px) var(--gutter);
+  color: var(--paper);
+  background:
+    radial-gradient(46rem 30rem at 12% 12%, rgba(237, 192, 106, .16), transparent 70%),
+    var(--night);
+}
+.contact__grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(36px, 7vw, 88px);
+  align-items: start;
+}
+.contact h2 { color: var(--paper); }
+.contact__intro { margin-top: 14px; color: #e9e4d8; }
+.contact__phone {
+  display: inline-block;
+  margin-top: 10px;
+  font: 400 clamp(2.1rem, 5vw, 3rem)/1.2 var(--display);
+  color: var(--lamp);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.contact__phone:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+address { margin-top: 26px; font-style: normal; color: #e9e4d8; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 18px 0 0; padding: 0; list-style: none; }
+.links a { color: var(--lamp-soft); text-underline-offset: 4px; }
+
+.form {
+  padding: clamp(22px, 3.4vw, 36px);
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.form h3 { font-size: 1.65rem; color: var(--night); margin-bottom: 20px; }
+.field { margin-bottom: 18px; }
+label { display: block; margin-bottom: 6px; font-size: 1rem; font-weight: 600; }
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #a8987f;
+  border-radius: 10px;
+}
+textarea { resize: vertical; min-height: 130px; }
+input:focus-visible, textarea:focus-visible { outline-color: var(--peacock); outline-offset: 1px; }
+[aria-invalid="true"] { border-color: var(--error); box-shadow: 0 0 0 1px var(--error); }
+.hint { margin-top: 5px; font-size: .95rem; color: var(--ink-soft); }
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+button {
+  padding: 13px 34px;
+  font: 600 1.1rem/1.2 var(--body);
+  color: var(--paper);
+  background: var(--peacock);
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+button:hover { background: var(--night-soft); }
+button:focus-visible { outline-color: var(--peacock); }
+button[disabled] { opacity: .65; cursor: progress; }
+.status { margin-top: 14px; font-size: 1.05rem; }
+.status:empty { margin: 0; }
+.status--error { color: var(--error); font-weight: 600; }
+.status--ok { color: var(--peacock); font-weight: 600; }
+.status a { white-space: nowrap; }
+
+/* Sidfot */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 22px var(--gutter) 26px;
+  font-size: 1rem;
+  color: #d9d5c9;
+  background: #0d1f21;
+}
+.footer svg { width: 14px; height: 14px; fill: var(--lamp); }
+
+/* Ringknapp i mobilen */
+.stickycall {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 5;
+  display: none;
+  padding: 14px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--night);
+  background: var(--lamp);
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(13, 31, 33, .45);
+}
+
+@media (max-width: 820px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr); }
+  .hero__portrait { max-width: min(320px, 76vw); }
+  .wall__grid { row-gap: 32px; }
+  .wall__text, .frame--salon, .frame--details { grid-column: 1 / -1; }
+  .wall__text p { max-width: none; }
+  .polaroid { grid-column: 2 / 12; margin-top: 0; }
+  .contact__grid { grid-template-columns: minmax(0, 1fr); }
+  .stickycall.is-visible { display: block; }
+  .footer { padding-bottom: 92px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spark { animation: none; }
+  .call { transition: none; }
+}

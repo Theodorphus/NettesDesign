@@ -1,0 +1,6 @@
+{
+  "name": "nettes-hardesign",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}
