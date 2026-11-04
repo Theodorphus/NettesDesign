@@ -233,6 +233,7 @@ button[disabled] { opacity: .65; cursor: progress; }
 /* Sidfot */
 .footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -242,6 +243,8 @@ button[disabled] { opacity: .65; cursor: progress; }
   background: #0d1f21;
 }
 .footer svg { width: 14px; height: 14px; fill: var(--lamp); }
+.footer__credit { flex-basis: 100%; text-align: center; font-size: .95rem; }
+.footer__credit a { color: var(--lamp-soft); text-underline-offset: 3px; }
 
 /* Ringknapp i mobilen */
 .stickycall {
